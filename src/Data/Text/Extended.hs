@@ -20,6 +20,6 @@ trim s
   | otherwise       = s 
 
 -- TODO: optimize
-readEither :: Text -> Text
-readEither = TR.readEither . T.pack 
+readEither :: Read a => Text -> Either String a
+readEither = TR.readEither . unpack 
   
