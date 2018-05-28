@@ -5,8 +5,10 @@ module Data.Text.Extended (
   , readEither
 ) where
 
+import           Data.Either.Combinators
 import           Data.Text
 import qualified Text.Read as TR
+
 import           Prelude hiding ( head, last, tail, init, null )
 
 showInt :: Int -> Text
@@ -20,6 +22,6 @@ trim s
   | otherwise       = s 
 
 -- TODO: optimize
-readEither :: Read a => Text -> Either String a
-readEither = TR.readEither . unpack 
+readEither :: Read a => Text -> Either Text a
+readEither = mapLeft pack . TR.readEither . unpack 
   
