@@ -1,0 +1,37 @@
+name:                text-extended
+version:             0.1.0.0
+github:              "dvekeman/hadruki-text-extended"
+license:             BSD3
+author:              "Dieter Vekeman"
+maintainer:          "dieter.vekeman@gmail.com"
+copyright:           "(c) Tinkhaven"
+
+extra-source-files:
+- README.md
+
+description:         Please see the README on GitHub at <https://github.com/dvekeman/hadruki-text-extended#readme>
+
+dependencies:
+  - base >= 4.7 && < 5
+  - text        >= 1.2    && < 2.0
+
+library:
+  source-dirs: src
+  ghc-options:
+  - -Wall
+
+tests:
+  prolix-import-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - text-extended
+    - hspec
+
+
+default-extensions:
+  - OverloadedStrings
