@@ -1,6 +1,7 @@
 module Data.Text.Extended (
   module Data.Text
   , showInt
+  , readInt
   , trim
   , readEither
 ) where
@@ -13,6 +14,9 @@ import           Prelude hiding ( head, last, tail, init, null )
 
 showInt :: Int -> Text
 showInt = pack . show
+
+readInt :: Text -> Int
+readInt = read . unpack
 
 trim :: Text -> Text
 trim s
