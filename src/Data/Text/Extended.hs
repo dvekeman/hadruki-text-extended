@@ -1,5 +1,7 @@
 module Data.Text.Extended (
   module Data.Text
+  , showNum
+  , readNum
   , showInt
   , readInt
   , trim
@@ -12,11 +14,19 @@ import qualified Text.Read as TR
 
 import           Prelude hiding ( head, last, tail, init, null )
 
+showNum :: (Show a, Num a) => a -> Text
+showNum = pack . show
+
+-- | deprecated, use showNum instead
 showInt :: Int -> Text
-showInt = pack . show
+showInt = showNum
+
+-- | deprecated, use readNum instead
+readNum :: (Read a, Num a) => Text -> a
+readNum = read . unpack
 
 readInt :: Text -> Int
-readInt = read . unpack
+readInt = readNum
 
 trim :: Text -> Text
 trim s
