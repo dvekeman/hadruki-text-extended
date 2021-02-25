@@ -32,12 +32,15 @@ readNum = read . unpack
 readInt :: Text -> Int
 readInt = readNum
 
+nonBreakingSpace :: Char
+nonBreakingSpace = ' '
+
 trim :: Text -> Text
 trim s
   | null s        = s
-  | head s == ' ' = trim $ tail s
-  | last s == ' ' = trim $ init s
-  | otherwise       = s 
+  | head s == ' ' || head s == nonBreakingSpace = trim $ tail s
+  | last s == ' ' || last s == nonBreakingSpace = trim $ init s
+  | otherwise       = s
 
 -- TODO: optimize
 readEither :: Read a => Text -> Either Text a

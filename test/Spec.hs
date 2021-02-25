@@ -20,6 +20,8 @@ main = hspec $ do
       T.trim "blah" `shouldBe` ("blah" :: T.Text)
     it "can trim non-empty strings without leading or trailing spaces but with spaces in between" $ 
       T.trim "je m'appelle Claude" `shouldBe` ("je m'appelle Claude" :: T.Text)
+    it "can trim non-breaking spaces" $  -- "abc\160"
+      T.trim "abc " `shouldBe` ("abc" :: T.Text)
 
   describe "Data.Text.Extended.showInt" $ do
     it "can convert integers to text" $
